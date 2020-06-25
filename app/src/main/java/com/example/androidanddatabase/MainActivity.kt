@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_sort -> {
                 val intent = Intent(this, FilterActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 true
             }
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        
+
         val database = DatabaseHelper(this)
 
         val arguments = intent.extras
@@ -50,8 +51,8 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             val intent = Intent(this, AddActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }
-
 }

@@ -18,16 +18,19 @@ class FilterActivity : AppCompatActivity() {
         btnName.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("filter", "CAT_NAME")
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
         btnAge.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("filter", "CAT_AGE")
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
         btnBreed.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("filter", "CAT_BREED")
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
         }
     }

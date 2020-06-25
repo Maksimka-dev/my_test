@@ -22,7 +22,7 @@ class MyRecycleAdapter(listDB: List<Cat>) :
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_view, parent, false) as TextView
+            .inflate(R.layout.item_view, parent, false)
         return MyViewHolder(textView)
     }
 
