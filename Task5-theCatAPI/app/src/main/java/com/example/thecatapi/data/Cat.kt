@@ -1,6 +1,8 @@
 package com.example.thecatapi.data
 
 data class Cat(
-    val name: String?,
-    val image: String?
+    val image: String,
+    val id: String,
+    val height: Int,
+    val width: Int
 )

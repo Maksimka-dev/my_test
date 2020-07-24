@@ -1,41 +1,58 @@
 package com.example.thecatapi.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import com.example.thecatapi.R
 import com.example.thecatapi.data.Cat
 
-class MyAdapter(listDB: List<Cat>) :
-    RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(var clickListener: OnCatItemClickListener) : RecyclerView.Adapter<CatViewHolder>() {
 
-        private val mListDB: List<Cat> = listDB
+    private val items = mutableListOf<Cat>()
 
-        class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var mName: TextView? = null
-            init {
-                mName = itemView.findViewById(R.id.name_cat)
-            }
-            var mImage: TextView? = null
-            init {
-                mImage = itemView.findViewById(R.id.image_cat)
-            }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view, null)
+        return CatViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
+        val imageUrl = items[position].image
+        val id = items[position].id
+        holder.initialize(items, clickListener)
+        holder.bind(imageUrl, id)
+    }
+
+    fun addItems(newItems: List<Cat>) {
+        items.addAll(newItems)
+        notifyDataSetChanged()
+    }
+}
+
+class CatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+    private val imageView = view.findViewById<ImageView>(R.id.imageView)
+
+    fun initialize(items: List<Cat>, action: OnCatItemClickListener) {
+        itemView.setOnClickListener{
+            action.onItemClick(items[adapterPosition].image, adapterPosition)
         }
+    }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            val textView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_view, parent, false)
-            return MyViewHolder(textView)
+    fun bind(imageUrl: String, id: String) {
+        imageView.load(imageUrl) {
+            size(600)
+            setParameter("imageId", id)
         }
+    }
+}
 
-        @SuppressLint("SetTextI18n")
-        override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-            holder.mName?.text = mListDB[position].name
-            holder.mImage?.text = mListDB[position].image
-        }
-
-        override fun getItemCount() = mListDB.size
+interface OnCatItemClickListener {
+    fun onItemClick(url: String, position: Int)
 }
