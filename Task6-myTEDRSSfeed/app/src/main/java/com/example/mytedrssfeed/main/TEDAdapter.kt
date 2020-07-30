@@ -1,5 +1,7 @@
 package com.example.mytedrssfeed.main
 
+import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,10 +51,14 @@ class CatViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
     }
 
+    @SuppressLint("LongLogTag")
     fun bind(link: String?, title: String?, description: String?, pubDate: String?) {
-        videoView.setVideoPath(link)
+        //videoView.setVideoPath(link)
         titleText.text = title
         descriptionText.text = description
+        Log.d("TEDAdapter - videoView", link)
+        Log.d("TEDAdapter - titleText", title)
+        Log.d("TEDAdapter - descriptionText", description)
     }
 }
 

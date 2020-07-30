@@ -9,13 +9,13 @@ class MainPresenter(view: MainActivity) {
     private val mView = view
 
     fun start() {
-        val job: Job = GlobalScope.launch {
-
+        val job: Job = GlobalScope.launch(Dispatchers.Main) {
             val data = withContext(Dispatchers.IO) {
-                Log.d("MainP", mModel.getListTED().toString())
                 mModel.getListTED()
             }
-            mView.setItems(data)
+            data?.let{
+                mView.setItems(data)
+            }
         }
         job.start()
     }

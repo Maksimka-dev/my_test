@@ -1,16 +1,17 @@
 package com.example.mytedrssfeed.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mytedrssfeed.R
 import com.example.mytedrssfeed.main.data.Item
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity(presenter: MainPresenter) : AppCompatActivity(), OnCatItemClickListener, MainView {
+class MainActivity: AppCompatActivity(), OnCatItemClickListener, MainView {
 
     private val itemAdapter = TEDAdapter(this)
-    private val mPresenter = presenter
+    private val mPresenter = MainPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class MainActivity(presenter: MainPresenter) : AppCompatActivity(), OnCatItemCli
     }
 
     override fun onItemClick(item: Item, position: Int) {
-        //TODO: create new Activity or Fragment
+        Log.d("MainActivity", item.link)
     }
 
     override fun setItems(items: List<Item>) {
