@@ -1,7 +1,7 @@
 package com.example.mytedrssfeed.main
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mytedrssfeed.R
@@ -26,7 +26,12 @@ class MainActivity: AppCompatActivity(), OnCatItemClickListener, MainView {
     }
 
     override fun onItemClick(item: Item, position: Int) {
-        Log.d("MainActivity", item.link)
+        val intent = Intent(this, NewActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.putExtra("title", "${item.title}")
+        intent.putExtra("desc", "${item.description}")
+        intent.putExtra("link", "${item.group?.contentList?.get(3)?.url}")
+        startActivity(intent)
     }
 
     override fun setItems(items: List<Item>) {

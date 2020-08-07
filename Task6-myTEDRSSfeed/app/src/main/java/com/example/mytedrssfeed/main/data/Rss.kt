@@ -67,7 +67,13 @@ data class Item @JvmOverloads constructor(
     @field:Element(name = "title", required = false)
     var title: String? = null,
     @field:Element(name = "pubDate", required = false)
-    var pubDate: String? = null
+    var pubDate: String? = null,
+    @field:Element(name = "image", type = ItunesImage::class, required = false)
+    var itunes_image: ItunesImage? = null,
+    @field:Element(name = "group", type = MediaGroup::class, required = false)
+    var group: MediaGroup? = null,
+    @field:Element(name = "duration", required = false)
+    var duration: String? = null
 )
 
 @Root(name = "image", strict = false)
@@ -78,4 +84,22 @@ data class Image @JvmOverloads constructor(
     var title: String? = null,
     @field:Element(name = "link", required = false)
     var link: String? = null
+)
+
+@Root(name = "image", strict = false)
+data class ItunesImage @JvmOverloads constructor(
+    @field:Attribute(name = "url", required = false)
+    var url: String? = null
+)
+
+@Root(name = "group", strict = false)
+data class MediaGroup @JvmOverloads constructor(
+    @field: ElementList(name = "content ", inline = true)
+    var contentList: List<Content> = arrayListOf()
+)
+
+@Root(name = "content", strict = false)
+data class Content @JvmOverloads constructor(
+    @field:Attribute(name = "url", required = false)
+    var url: String? = null
 )
