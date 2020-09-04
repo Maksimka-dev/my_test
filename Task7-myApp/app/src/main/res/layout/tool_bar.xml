@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:alpha="0.9"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/action_bar_menu"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_weight="0.25"-->
+<!--        android:background="#00FFA108"-->
+<!--        android:contentDescription="menu"-->
+<!--        android:tint="#CE6815"-->
+<!--        app:srcCompat="@drawable/ic_menu_black_24dp" />-->
+
+    <ImageView
+        android:id="@+id/logo_action_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.5"
+        android:contentDescription="logo"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        app:srcCompat="@drawable/logo_color" />
+
+    <ImageButton
+        android:id="@+id/action_bar_vert"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.25"
+        android:background="#00FFA108"
+        android:tint="#CE6815"
+        app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+</LinearLayout>

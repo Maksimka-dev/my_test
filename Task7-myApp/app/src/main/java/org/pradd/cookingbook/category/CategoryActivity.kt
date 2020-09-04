@@ -1,43 +1,58 @@
-package org.pradd.cookingbook
+package org.pradd.cookingbook.category
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import kotlinx.android.synthetic.main.activity_main.bottom_navigation
-import org.pradd.cookingbook.category.CategoryActivity
-import org.pradd.cookingbook.database.LoginActivity
+import kotlinx.android.synthetic.main.activity_categories.*
+import kotlinx.android.synthetic.main.activity_categories.bottom_navigation
+import org.pradd.cookingbook.MainActivity
+import org.pradd.cookingbook.R
+import org.pradd.cookingbook.data.Category
 import org.pradd.cookingbook.recipes.RecipesActivity
-import org.pradd.cookingbook.user.UserRecipesActivity
 
+class CategoryActivity: AppCompatActivity(), OnCategoryClickListener {
 
-class MainActivity : AppCompatActivity() {
+    private val itemAdapter = CategoryAdapter(this)
+    private val mPresenter = CategoryPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_categories)
 
         val btnHome = findViewById<BottomNavigationItemView>(R.id.bottom_menu_home)
         val btnCategory = findViewById<BottomNavigationItemView>(R.id.bottom_menu_category)
         val btnMyRecipe = findViewById<BottomNavigationItemView>(R.id.bottom_menu_my_recipe)
         myColorStateList(listOf(btnHome, btnCategory, btnMyRecipe))
-        bottom_navigation.selectedItemId = R.id.bottom_menu_home
+
+        bottom_navigation.selectedItemId = R.id.bottom_menu_category
+
+        val name = findViewById<TextView>(R.id.category_title)
+        name.text = getString(R.string.categories)
+
+        recycler_view_categories.apply {
+            adapter = itemAdapter
+            layoutManager = LinearLayoutManager(this@CategoryActivity)
+        }
+
+        mPresenter.getItems()
 
         bottom_navigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.bottom_menu_home -> {
+                    goMainActivity()
                     true
                 }
                 R.id.bottom_menu_category -> {
-                    goActivityCategory()
                     true
                 }
                 R.id.bottom_menu_my_recipe -> {
-                    goActivityUserRecipes()
+                    Log.d("BottomNavigationView", "bottom_menu_my_recipe")
                     true
                 }
                 else -> false
@@ -45,36 +60,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun Click(view: View) {
-        when (view.id) {
-            R.id.btn_breakfast -> goActivityRecipes("breakfast", 10)
-            R.id.btn_lunch -> goActivityRecipes("lunch", 11)
-            R.id.btn_dessert -> goActivityRecipes("dessert", 8)
-            R.id.btn_dinner -> goActivityRecipes("dinner", 13)
-            R.id.btn_all_recipes -> goActivityRecipes("all_recipes")
-        }
-    }
-
-    private fun goActivityRecipes(name: String, categoryId: Int? = null) {
+    override fun onItemClick(item: Category, position: Int) {
         val intent = Intent(this, RecipesActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent.putExtra("name", name)
-        intent.putExtra("categoryId", categoryId)
+        intent.putExtra("name", item.name)
+        intent.putExtra("categoryId", item.id)
         startActivity(intent)
     }
 
-    private fun logout(){
-
+    fun setItems(items: List<Category>) {
+        itemAdapter.addItems(items)
     }
 
-    private fun goActivityCategory(){
-        val intent = Intent(this, CategoryActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
-    }
-
-    private fun goActivityUserRecipes(){
-        val intent = Intent(this, UserRecipesActivity::class.java)
+    private fun goMainActivity(){
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }

@@ -4,5 +4,9 @@
     <string name="lunch">Обед</string>
     <string name="dessert">Десерты</string>
     <string name="dinner">Ужин</string>
-    <string name="all_category">Все категории</string>
+    <string name="all_recipes">Все рецепты</string>
+    <string name="categories">Категории</string>
+    <string name="bottom_menu_home">Главная</string>
+    <string name="bottom_menu_category">Категории</string>
+    <string name="bottom_menu_my_recipe">Мои рецепты</string>
 </resources>

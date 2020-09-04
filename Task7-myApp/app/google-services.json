@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "290803022437",
+    "firebase_url": "https://booking-cook.firebaseio.com",
+    "project_id": "booking-cook",
+    "storage_bucket": "booking-cook.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290803022437:android:187766af8f3615a9f8a48c",
+        "android_client_info": {
+          "package_name": "org.pradd.cookingbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290803022437-rlvrvivmh8153626aufv8ceuk1619a0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUT7PAFswadH5Is61as_j0OBl7YTpHwDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290803022437-rlvrvivmh8153626aufv8ceuk1619a0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
