@@ -22,7 +22,7 @@ interface RecipesApi {
 
     @GET("/api/recipe/{id}")
     @Headers("Content-Type: application/json")
-    suspend fun getRecipe(@Path("id") id: Int): List<Recipe>
+    suspend fun getRecipe(@Path("id") id: String): List<Recipe>
 
     @GET("/api/categories")
     @Headers("Content-Type: application/json")
@@ -50,7 +50,7 @@ object RecipesApiImpl {
         }
     }
 
-    suspend fun getRecipe(id: Int): Recipe {
+    suspend fun getRecipe(id: String): Recipe {
         return withContext(Dispatchers.IO) {
             RecipesService.getRecipe(id)[0]
         }

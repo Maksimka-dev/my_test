@@ -39,10 +39,9 @@ class LoginActivity : AppCompatActivity() {
             val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK) {
-                val user = FirebaseAuth.getInstance().currentUser
                 getUserRecipeActivity()
             } else {
-                Log.d("onActivityResult RESULT_NOT_OK", response?.error?.errorCode.toString())
+                Log.d("onActivityResult RESULT_NOT_OK", response?.error?.localizedMessage)
             }
         }
     }

@@ -31,6 +31,7 @@ class UserRecipesAdapter(var clickListener: OnUserRecipeClickListener) : Recycle
     }
 
     fun addItems(newItems: List<Recipe>) {
+        items.clear()
         items.addAll(newItems)
         notifyDataSetChanged()
     }

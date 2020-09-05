@@ -9,4 +9,8 @@
     <string name="bottom_menu_home">Главная</string>
     <string name="bottom_menu_category">Категории</string>
     <string name="bottom_menu_my_recipe">Мои рецепты</string>
+    <string name="cancel">Отмена</string>
+    <string name="btn_add_ingredient">Добавить ингредиент</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="btn_save">Сохранить</string>
 </resources>

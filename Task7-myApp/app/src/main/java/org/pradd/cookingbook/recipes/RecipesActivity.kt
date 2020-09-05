@@ -49,7 +49,7 @@ class RecipesActivity: AppCompatActivity(),
             else -> title.toString()
     }
 
-    private fun goActivityRecipe(id: Int) {
+    private fun goActivityRecipe(id: String) {
         val intent = Intent(this, DetailsRecipeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.putExtra("id", id)

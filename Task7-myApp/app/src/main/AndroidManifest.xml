@@ -23,6 +23,11 @@
         <activity android:name=".category.CategoryActivity" />
         <activity android:name=".database.LoginActivity" />
         <activity android:name=".user.UserRecipesActivity" />
+        <activity
+            android:name=".user.UserAddRecipeActivity"
+            android:parentActivityName=".user.UserRecipesActivity"
+        />
+        <activity android:name=".user.UserDetailsRecipeActivity" />
     </application>
 
 </manifest>

@@ -23,7 +23,7 @@ class DetailsRecipeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_details_recipe)
 
         val arguments = intent.extras
-        val recipeId = arguments?.getInt("id")
+        val recipeId = arguments?.getString("id")
 
         recycler_view_recipe.apply {
             adapter = itemAdapter
