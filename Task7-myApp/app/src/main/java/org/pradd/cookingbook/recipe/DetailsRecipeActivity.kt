@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
 import kotlinx.android.synthetic.main.activity_details_recipe.*
 import org.pradd.cookingbook.R
-import org.pradd.cookingbook.data.Ingredients
-import org.pradd.cookingbook.data.Recipe
+import org.pradd.cookingbook.model.Ingredients
+import org.pradd.cookingbook.model.Recipe
 
 class DetailsRecipeActivity: AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class DetailsRecipeActivity: AppCompatActivity() {
         setContentView(R.layout.activity_details_recipe)
 
         val arguments = intent.extras
-        val recipeId = arguments?.getString("id")
+        val recipeId = arguments?.getLong("id")
 
         recycler_view_recipe.apply {
             adapter = itemAdapter

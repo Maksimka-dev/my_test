@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_categories.*
 import kotlinx.android.synthetic.main.activity_categories.bottom_navigation
 import org.pradd.cookingbook.MainActivity
 import org.pradd.cookingbook.R
-import org.pradd.cookingbook.data.Category
+import org.pradd.cookingbook.model.Category
 import org.pradd.cookingbook.recipes.RecipesActivity
 
 class CategoryActivity: AppCompatActivity(), OnCategoryClickListener {

@@ -7,7 +7,7 @@ class DetailsRecipePresenter(view: DetailsRecipeActivity) {
     private val mModel = RecipesApiImpl
     private val mView = view
 
-    fun getItems(id: String) {
+    fun getItems(id: Long) {
         CoroutineScope(Dispatchers.Main).launch {
             val recipe = mModel.getRecipe(id)
             mView.setRecipe(recipe)

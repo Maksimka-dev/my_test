@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/more"
-        android:title="123"
-        android:contentDescription="13"
-        app:showAsAction="never" />
+        android:id="@+id/action_save"
+        android:title="Сохранить"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_save"/>
 
 </menu>

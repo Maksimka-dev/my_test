@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_details_recipe.*
 import org.pradd.cookingbook.R
-import org.pradd.cookingbook.data.Ingredients
-import org.pradd.cookingbook.data.Recipe
+import org.pradd.cookingbook.model.Ingredients
+import org.pradd.cookingbook.model.Recipe
 import org.pradd.cookingbook.recipe.DetailsRecipeAdapter
 
 class UserDetailsRecipeActivity: AppCompatActivity() {

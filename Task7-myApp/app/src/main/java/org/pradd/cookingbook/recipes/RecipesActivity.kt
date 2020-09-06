@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_recipes.*
 import org.pradd.cookingbook.R
-import org.pradd.cookingbook.data.Recipe
+import org.pradd.cookingbook.model.Recipe
 import org.pradd.cookingbook.recipe.DetailsRecipeActivity
 
 class RecipesActivity: AppCompatActivity(),
@@ -49,7 +49,7 @@ class RecipesActivity: AppCompatActivity(),
             else -> title.toString()
     }
 
-    private fun goActivityRecipe(id: String) {
+    private fun goActivityRecipe(id: Long) {
         val intent = Intent(this, DetailsRecipeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.putExtra("id", id)

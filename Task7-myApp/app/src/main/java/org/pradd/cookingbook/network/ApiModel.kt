@@ -2,8 +2,8 @@ package org.pradd.cookingbook.network
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.pradd.cookingbook.data.Category
-import org.pradd.cookingbook.data.Recipe
+import org.pradd.cookingbook.model.Category
+import org.pradd.cookingbook.model.Recipe
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -22,7 +22,7 @@ interface RecipesApi {
 
     @GET("/api/recipe/{id}")
     @Headers("Content-Type: application/json")
-    suspend fun getRecipe(@Path("id") id: String): List<Recipe>
+    suspend fun getRecipe(@Path("id") id: Long): List<Recipe>
 
     @GET("/api/categories")
     @Headers("Content-Type: application/json")
@@ -50,7 +50,7 @@ object RecipesApiImpl {
         }
     }
 
-    suspend fun getRecipe(id: String): Recipe {
+    suspend fun getRecipe(id: Long): Recipe {
         return withContext(Dispatchers.IO) {
             RecipesService.getRecipe(id)[0]
         }

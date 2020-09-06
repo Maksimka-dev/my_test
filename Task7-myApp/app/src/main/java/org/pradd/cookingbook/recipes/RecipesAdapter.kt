@@ -1,5 +1,6 @@
 package org.pradd.cookingbook.recipes
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import org.pradd.cookingbook.R
-import org.pradd.cookingbook.data.Recipe
+import org.pradd.cookingbook.model.Recipe
 
-class RecipesAdapter(var clickListener: OnRecipeClickListener) : RecyclerView.Adapter<RecipeViewHolder>() {
+class RecipesAdapter(private val clickListener: OnRecipeClickListener) : RecyclerView.Adapter<RecipeViewHolder>() {
 
     private val items = mutableListOf<Recipe>()
 
+    @SuppressLint("InflateParams")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recipes_view, null)
         return RecipeViewHolder(view)

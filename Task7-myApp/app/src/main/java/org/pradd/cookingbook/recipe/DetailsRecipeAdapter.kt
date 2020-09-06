@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.pradd.cookingbook.R
-import org.pradd.cookingbook.data.Ingredients
+import org.pradd.cookingbook.model.Ingredients
 
 class DetailsRecipeAdapter : RecyclerView.Adapter<RecipeViewHolder>() {
 

@@ -1,49 +1,54 @@
 package org.pradd.cookingbook.user
 
-import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.gson.Gson
-import org.pradd.cookingbook.data.Ingredients
-import org.pradd.cookingbook.data.Recipe
-import org.pradd.cookingbook.databinding.ActivityUserAddRecipeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.pradd.cookingbook.App
+import org.pradd.cookingbook.R
+import org.pradd.cookingbook.model.Ingredients
+import org.pradd.cookingbook.model.Recipe
 
 
 class UserAddRecipeActivity: AppCompatActivity() {
 
-    private lateinit var binding: ActivityUserAddRecipeBinding
-    private val user = FirebaseAuth.getInstance().currentUser!!
     private val listIngredient = mutableListOf<Ingredients>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityUserAddRecipeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_user_add_recipe)
 
-        binding.btnCancel.setOnClickListener {
-            val myIntent = Intent(this, UserRecipesActivity::class.java)
-            startActivityForResult(myIntent, 0)
+        findViewById<Button>(R.id.btn_cancel).setOnClickListener {
+            finish()
         }
 
-        binding.btnSave.setOnClickListener {
-            val recipe = Recipe(
-                user.uid,
-                binding.etAddRecipeTitle.text.toString(),
-                "null",
-                binding.etAddRecipeDescription.text.toString(),
-                binding.etAddRecipeBody.text.toString(),
-                listIngredient
-            )
-            val gson = Gson()
-            val recipeJson = gson.toJson(recipe)
-            val intent = Intent(this, UserRecipesActivity::class.java)
-            intent.putExtra("recipe", recipeJson)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivityForResult(intent, 0)
-        }
+        val title = findViewById<EditText>(R.id.et_add_recipe_title)
+        val description = findViewById<EditText>(R.id.et_add_recipe_description)
+        val body = findViewById<EditText>(R.id.et_add_recipe_body)
 
-        
+        findViewById<Button>(R.id.btn_save).setOnClickListener {
+            if (title.text.isNotEmpty() and body.text.isNotEmpty()) {
+                val recipe = Recipe()
+                recipe.description = description.text.toString()
+                recipe.text = title.text.toString()
+                recipe.text = body.text.toString()
+                recipe.image = "image"
+                recipe.ingredients = listIngredient
+                CoroutineScope(Dispatchers.IO).launch {
+                    App.instance?.recipeDao?.insert(recipe)
+                }
+                finish()
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "Введите название и текст рецепта",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
-
 }
